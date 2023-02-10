@@ -1,6 +1,7 @@
-import { say, initSync } from '../app/pkg/wasm_app.js';
+import init, { say } from '../app/pkg/wasm_app.js';
 
-window.onload = () => {
-  initSync();
-  say('Test');
+window.onload = async () => {
+  await init();
+  const res = say('Test');
+  console.log(res);
 };
