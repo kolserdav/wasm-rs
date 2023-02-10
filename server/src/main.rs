@@ -18,7 +18,7 @@ async fn handle(_req: Request<Body>) -> Result<Response<Body>, Infallible> {
     let mut f = File::open(path).unwrap();
     let mut chunk_list = Vec::<u8>::new();
     loop {
-        let mut chunk = [0; 10];
+        let mut chunk = [0; 1];
         let l = f.read(&mut chunk).unwrap();
         if l == 0 {
             break;

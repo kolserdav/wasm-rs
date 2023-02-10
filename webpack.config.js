@@ -16,6 +16,9 @@ module.exports = (env) => {
       path: path.resolve(__dirname, 'dist'),
       filename: '[name].min.js',
     },
+    optimization: {
+      minimize: false,
+    },
     plugins: [
       new CleanWebpackPlugin(),
       new MiniCssExtractPlugin(),
@@ -34,6 +37,7 @@ module.exports = (env) => {
           },
           exclude: /node_modules/,
         },
+        { test: /\.js$/, loader: 'source-map-loader' },
         {
           test: /\.(scss|css)$/i,
           use: ['style-loader', 'css-loader', 'sass-loader'],

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "compile": "cd app && wasm-pack build --target web",
-    "build": "npm run compile && webpack --env NODE_ENV=production",
+    "build": "webpack --env NODE_ENV=production",
     "dev": "webpack serve --env NODE_ENV=development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -28,6 +28,7 @@
     "mini-css-extract-plugin": "^2.7.2",
     "prettier": "^2.8.4",
     "sass-loader": "^13.2.0",
+    "source-map-loader": "^4.0.1",
     "style-loader": "^3.3.1",
     "wasm-pack": "^0.10.3",
     "webpack-cli": "^5.0.1",
