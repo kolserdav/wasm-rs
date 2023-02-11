@@ -5,7 +5,13 @@ use std::env::current_dir;
 use std::net::SocketAddr;
 mod prelude;
 use prelude::*;
-use std::path::Path;
+use std::path::{Path, PathBuf};
+#[macro_use]
+extern crate lazy_static;
+
+lazy_static! {
+    static ref CWD: PathBuf = current_dir().unwrap();
+}
 
 const INDEX_PAGE: &str = "/index.html";
 const HOST: [u8; 4] = [192, 168, 0, 3];
@@ -19,9 +25,7 @@ async fn handle(_req: Request<Body>) -> Result<Response<Body>, Infallible> {
         uri
     };
 
-    let dir = current_dir().unwrap();
-
-    let path = get_file_path(dir, uri);
+    let path = get_file_path(CWD.to_path_buf(), uri);
     let path = Path::new(&path);
     let chunk_list = read_file_data(&path);
 
@@ -39,6 +43,8 @@ async fn handle(_req: Request<Body>) -> Result<Response<Body>, Infallible> {
 
 #[tokio::main]
 async fn main() {
+    lazy_static::initialize(&CWD);
+
     let addr = SocketAddr::from((HOST, PORT));
 
     let make_service = make_service_fn(|_conn| async { Ok::<_, Infallible>(service_fn(handle)) });
