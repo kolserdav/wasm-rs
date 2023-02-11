@@ -17,8 +17,9 @@ module.exports = (env) => {
       filename: '[name].min.js',
     },
     optimization: {
-      minimize: false,
+      minimize: true,
     },
+    devtool: 'source-map',
     plugins: [
       new CleanWebpackPlugin(),
       new MiniCssExtractPlugin(),

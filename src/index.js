@@ -4,5 +4,7 @@ window.onload = async () => {
   await init();
   const res = say('Test');
   console.log(res);
-  say_hello();
+  const r = say_hello();
+
+  console.log(r);
 };
