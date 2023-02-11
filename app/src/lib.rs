@@ -4,7 +4,7 @@ mod prelude;
 use gloo_utils::format::JsValueSerdeExt;
 use prelude::{el, Error, ErrorKind};
 use serde::{Deserialize, Serialize};
-use serde_wasm_bindgen::to_value;
+use ts_rs::TS;
 
 #[wasm_bindgen]
 pub fn say(s: String) -> String {
@@ -12,8 +12,10 @@ pub fn say(s: String) -> String {
     return r + &s;
 }
 
+#[derive(TS)]
+#[ts(export)]
 #[derive(Serialize, Deserialize)]
-pub struct Res {
+pub struct SayHello {
     first: u8,
     second: bool,
 }
@@ -30,7 +32,7 @@ pub fn say_hello() -> Result<JsValue, JsError> {
     let body = body_o.unwrap();
     let hello: Option<&str> = Some("Hello Webassembly!");
     body.set_text_content(hello);
-    let data = Res {
+    let data = SayHello {
         first: 244,
         second: true,
     };

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "compile": "cd app && wasm-pack build --target web",
+    "compile": "cargo test && cd app && wasm-pack build --target web",
     "build": "npm run compile && webpack --env NODE_ENV=production",
     "dev": "webpack serve --env NODE_ENV=development",
     "test": "echo \"Error: no test specified\" && exit 1"

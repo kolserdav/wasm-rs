@@ -1,10 +1,10 @@
 import init, { say, say_hello } from '../app/pkg/wasm_app.js';
-
+import type {SayHello} from '../app/bindings/SayHello.ts';
 window.onload = async () => {
   await init();
   const res = say('Test');
   console.log(res);
-  const r = say_hello();
+  const {first, second} = say_hello() as SayHello;
 
-  console.log(r);
+  console.log({first, second});
 };
