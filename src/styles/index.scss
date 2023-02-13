@@ -1,0 +1,12 @@
+$wrapper-margin: 1rem;
+
+.wrapper {
+	position: relative;
+	width: calc(100% - $wrapper-margin * 2);
+	min-width: 320px;
+	height: 100%;
+	padding: 1rem;
+	min-height: 200px;
+	border: 1px groove black;
+	margin: $wrapper-margin;
+}

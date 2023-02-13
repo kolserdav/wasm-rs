@@ -3,14 +3,13 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = (env) => {
   const { NODE_ENV, PORT } = env;
   return {
     mode: NODE_ENV,
     entry: {
-      main: './src/index.js',
+      main: './src/index.ts',
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
@@ -21,7 +20,6 @@ module.exports = (env) => {
     },
     devtool: 'source-map',
     plugins: [
-      new CleanWebpackPlugin(),
       new MiniCssExtractPlugin(),
       new HtmlWebpackPlugin({
         filename: 'index.html',
@@ -30,6 +28,13 @@ module.exports = (env) => {
     ],
     module: {
       rules: [
+        {
+          test: /\.ts$/,
+          loader: 'ts-loader',
+          options: {
+            configFile: 'tsconfig.json',
+          },
+        },
         {
           test: /\.js$/,
           loader: 'babel-loader',
