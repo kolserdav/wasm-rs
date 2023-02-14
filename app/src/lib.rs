@@ -51,9 +51,8 @@ fn content_editable() {
     }
     let t = t.unwrap();
     console::log_1(&JsValue::from(&t));
-    let listener = EventListener::new();
-    let cb = Function::new_no_args("");
-    let list = t.add_event_listener_with_event_listener("select", &listener);
+    let cb = Function::new_with_args("e", "console.log(e);");
+    let list = t.add_event_listener_with_callback("click", &cb);
 }
 
 fn hello_webassembly() -> Result<(), JsError> {
